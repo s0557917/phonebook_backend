@@ -7,6 +7,7 @@ const app = express()
 app.use(express.json())
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :content'))
 app.use(cors())
+app.use(express.static('build'))
 
 morgan.token('content', function(request, response){
     console.log("Req: ", request.body)
@@ -62,6 +63,7 @@ app.delete('/api/entries/:id', (request, response) => {
 })
 
 app.post('/api/entries', (request, response) => {
+    
     const body = request.body
     if(!body.name || !body.number){
         return response.status(404).json({
@@ -78,9 +80,7 @@ app.post('/api/entries', (request, response) => {
         name: body.name,
         number: body.number
     }
-    console.log(entry)
     entries = entries.concat(entry)
-    console.log(entries)
     response.json(entries)
 })
 
