@@ -1,0 +1,7 @@
+PUT http://localhost:3001/api/entries/6169b29ce1c48b824d75cb56
+Content-Type: application/json
+
+{
+    "name": "Vasily Kandinsky",
+    "number": 123456789
+}
